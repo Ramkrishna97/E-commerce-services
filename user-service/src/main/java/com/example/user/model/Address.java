@@ -12,16 +12,18 @@ import lombok.*;
 @Builder
 public class Address {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(columnDefinition = "BINARY(16)")
+    private java.util.UUID id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @Column(nullable = false)
+    @Column(name = "line1", nullable = false)
     private String addressLine1;
 
+    @Column(name = "line2")
     private String addressLine2;
 
     @Column(nullable = false, length = 100)
@@ -33,7 +35,7 @@ public class Address {
     @Column(nullable = false, length = 20)
     private String postalCode;
 
-    @Column(nullable = false, length = 100)
+    @Column(name = "country_code", nullable = false, length = 2)
     private String country;
 
     private Double latitude;

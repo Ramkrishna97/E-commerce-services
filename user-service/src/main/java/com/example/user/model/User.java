@@ -3,6 +3,7 @@ package com.example.user.model;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
+import java.util.UUID;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,11 +16,9 @@ import java.util.Set;
 @Builder
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(nullable = false, unique = true, length = 36)
-    private String publicId;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(columnDefinition = "BINARY(16)")
+    private UUID id;
 
     @Column(nullable = false, unique = true)
     private String email;
@@ -33,7 +32,7 @@ public class User {
     @Column(nullable = false, length = 100)
     private String lastName;
 
-    @Column(length = 20)
+    @Column(name = "phone", length = 32)
     private String phoneNumber;
 
     @Column(nullable = false, length = 50)

@@ -4,6 +4,8 @@ server:
 spring:
   application:
     name: api-gateway
+  config:
+    import: optional:configserver:http://localhost:8888
   cloud:
     gateway:
       discovery:
@@ -40,10 +42,16 @@ spring:
           predicates:
             - Path=/api/v1/reviews/**
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,gateway
+
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
 
 jwt:
-  secret: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+  secret: ${JWT_SECRET:404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970}

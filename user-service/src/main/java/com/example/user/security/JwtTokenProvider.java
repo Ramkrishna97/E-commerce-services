@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import javax.crypto.SecretKey;
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
@@ -27,7 +28,7 @@ public class JwtTokenProvider {
         return Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8));
     }
 
-    public String generateToken(com.example.user.model.User user) {
+    public String generateAccessToken(com.example.user.model.User user) {
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + jwtExpiration);
 
@@ -39,6 +40,7 @@ public class JwtTokenProvider {
                 .subject(user.getId().toString())
                 .claim("email", user.getEmail())
                 .claim("roles", roles)
+                .claim("token_type", "access")
                 .issuedAt(now)
                 .expiration(expiryDate)
                 .signWith(getSigningKey())
@@ -51,23 +53,27 @@ public class JwtTokenProvider {
 
         return Jwts.builder()
                 .subject(user.getId().toString())
+                .claim("token_type", "refresh")
                 .issuedAt(now)
                 .expiration(expiryDate)
                 .signWith(getSigningKey())
                 .compact();
     }
 
-    public boolean validateToken(String token) {
-        try {
-            Jwts.parser().verifyWith(getSigningKey()).build().parseSignedClaims(token);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+    public Optional<Claims> parseAccessToken(String token) {
+        return parse(token, "access");
     }
 
-    public String getUserIdFromToken(String token) {
-        Claims claims = Jwts.parser().verifyWith(getSigningKey()).build().parseSignedClaims(token).getPayload();
-        return claims.getSubject();
+    public Optional<Claims> parseRefreshToken(String token) {
+        return parse(token, "refresh");
+    }
+
+    public long accessTokenExpirationSeconds() { return jwtExpiration / 1000; }
+
+    private Optional<Claims> parse(String token, String expectedType) {
+        try {
+            Claims claims = Jwts.parser().verifyWith(getSigningKey()).build().parseSignedClaims(token).getPayload();
+            return expectedType.equals(claims.get("token_type", String.class)) ? Optional.of(claims) : Optional.empty();
+        } catch (Exception ignored) { return Optional.empty(); }
     }
 }
