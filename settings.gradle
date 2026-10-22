@@ -1,1 +1,6 @@
 rootProject.name = 'e-commerce-app'
+
+include 'discovery-server'
+include 'config-server'
+include 'api-gateway'
+include 'user-service'
