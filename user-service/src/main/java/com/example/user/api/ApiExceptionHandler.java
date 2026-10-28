@@ -8,6 +8,7 @@ import org.springframework.http.ProblemDetail;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestControllerAdvice
 public class ApiExceptionHandler {
@@ -25,6 +26,11 @@ public class ApiExceptionHandler {
         String detail = ex.getBindingResult().getFieldErrors().stream().findFirst()
                 .map(error -> error.getField() + " " + error.getDefaultMessage()).orElse("Request validation failed");
         return problem(HttpStatus.BAD_REQUEST, detail);
+    }
+
+    @ExceptionHandler(ResponseStatusException.class)
+    ProblemDetail responseStatus(ResponseStatusException ex) {
+        return ProblemDetail.forStatusAndDetail(ex.getStatusCode(), ex.getReason() == null ? "Request failed" : ex.getReason());
     }
 
     private ProblemDetail problem(HttpStatus status, String detail) {
