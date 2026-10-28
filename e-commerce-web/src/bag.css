@@ -1,0 +1,16 @@
+.modal-backdrop { z-index: 10; }
+.bag-panel { width: min(560px, 100%); max-height: min(700px, 90vh); overflow-y: auto; }
+.bag-items { margin: 24px 0; display: grid; gap: 16px; }
+.bag-item { display: grid; grid-template-columns: 70px minmax(0, 1fr) auto; gap: 14px; align-items: center; padding-bottom: 16px; border-bottom: 1px solid #dfe2db; }
+.bag-art { width: 70px; height: 70px; display: grid; place-items: center; color: #28463d; font: 42px 'Playfair Display'; }
+.bag-item strong { display: block; font-size: 14px; }
+.bag-item small { display: block; margin: 5px 0; color: #596a64; }
+.bag-item button { border: 0; background: none; padding: 0; color: #ae583c; text-decoration: underline; cursor: pointer; }
+.bag-item b { font-size: 13px; white-space: nowrap; }
+.bag-total { display: flex; justify-content: space-between; padding-top: 16px; border-top: 1px solid #dfe2db; }
+.bag-note { color: #596a64; font-size: 12px; }
+.checkout-button { width: 100%; justify-content: center; }
+@media (max-width: 760px) { .actions button[aria-label="Account"] { display: block !important; } .bag-item { grid-template-columns: 56px minmax(0, 1fr); } .bag-art { width: 56px; height: 56px; } .bag-item b { grid-column: 2; } }
+.sand { background: #e8dec9; }
+.categories button:first-child { background: transparent; color: #31443e; border-color: #d0d8d1; }
+.categories button[aria-pressed="true"] { background: #1c3932; color: white; border-color: #1c3932; }
