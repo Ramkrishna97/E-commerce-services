@@ -4,31 +4,19 @@ server:
 spring:
   application:
     name: user-service
-  config:
-    import: optional:configserver:http://localhost:8888
   datasource:
-    url: jdbc:mysql://localhost:3306/user_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-    username: root
-    password: password
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:h2:file:./data/user-db;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password: ''
   jpa:
     hibernate:
       ddl-auto: update
-    show-sql: true
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQLDialect
-        format_sql: true
+    open-in-view: false
 management:
   endpoints:
     web:
       exposure:
         include: health,info
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
 
 jwt:
   secret: ${JWT_SECRET:404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970}
