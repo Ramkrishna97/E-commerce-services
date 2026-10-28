@@ -4,54 +4,21 @@ server:
 spring:
   application:
     name: api-gateway
-  config:
-    import: optional:configserver:http://localhost:8888
   cloud:
     gateway:
-      discovery:
-        locator:
-          enabled: true
-          lower-case-service-id: true
-      routes:
-        - id: user-service
-          uri: lb://user-service
-          predicates:
-            - Path=/api/v1/auth/**, /api/v1/users/**
-        - id: product-service
-          uri: lb://product-service
-          predicates:
-            - Path=/api/v1/products/**, /api/v1/categories/**
-        - id: inventory-service
-          uri: lb://inventory-service
-          predicates:
-            - Path=/api/v1/inventory/**
-        - id: cart-service
-          uri: lb://cart-service
-          predicates:
-            - Path=/api/v1/cart/**
-        - id: order-service
-          uri: lb://order-service
-          predicates:
-            - Path=/api/v1/orders/**
-        - id: payment-service
-          uri: lb://payment-service
-          predicates:
-            - Path=/api/v1/payments/**
-        - id: review-service
-          uri: lb://review-service
-          predicates:
-            - Path=/api/v1/reviews/**
+      server:
+        webflux:
+          routes:
+            - id: user-service
+              uri: ${USER_SERVICE_URL:http://localhost:8081}
+              predicates:
+                - Path=/api/v1/auth/**, /api/v1/users/**, /api/v1/orders, /api/v1/orders/**
 
 management:
   endpoints:
     web:
       exposure:
         include: health,info,gateway
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
 
 jwt:
   secret: ${JWT_SECRET:404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970}
