@@ -1,0 +1,17 @@
+.checkout-panel { width: min(590px, 100%); max-height: min(92vh, 900px); overflow-y: auto; }
+.checkout-intro { color: #596a64; font-size: 14px; }
+.checkout-panel form { display: grid; gap: 13px; margin-top: 22px; }
+.checkout-panel label { display: grid; gap: 6px; color: #52635c; font-size: 12px; }
+.checkout-panel input { height: 42px; border: 1px solid #ccd5cd; background: #fff; padding: 8px; font: 14px 'DM Sans'; }
+.checkout-summary { display: grid; gap: 12px; padding: 19px 0; margin-top: 10px; border-top: 1px solid #dfe2db; }
+.checkout-summary h3 { margin: 0 0 4px; font-size: 16px; }
+.checkout-summary>div { display: flex; justify-content: space-between; gap: 15px; font-size: 14px; }
+.checkout-summary strong { white-space: nowrap; }
+.checkout-total { border-top: 1px solid #dfe2db; padding-top: 13px; font-weight: 600; }
+.checkout-payment { margin: 0; color: #52635c; font-size: 13px; }
+.checkout-panel .primary { justify-content: center; width: 100%; }
+.checkout-panel .primary:disabled { opacity: .65; cursor: wait; }
+.order-id { display: block; overflow-wrap: anywhere; padding: 12px; background: #e5eee6; }
+.saved-details { padding: 16px; background: #e5eee6; font-size: 14px; line-height: 1.6; }
+.saved-details p { margin: 8px 0 0; }
+.saved-details .switch { margin-top: 8px; }
