@@ -1,0 +1,14 @@
+[
+  { "id": "orbit", "name": "Orbit Pro Headphones", "brand": "SONIK", "category": "Tech", "price": 7499, "rating": "4.8", "color": "lavender", "icon": "◉" },
+  { "id": "terra", "name": "Terra Everyday Pack", "brand": "NOMAD", "category": "Travel", "price": 2999, "rating": "4.6", "color": "peach", "icon": "◒" },
+  { "id": "aura", "name": "Aura Smart Lamp", "brand": "LUMEN", "category": "Living", "price": 4250, "rating": "4.9", "color": "mint", "icon": "◌" },
+  { "id": "canvas", "name": "Canvas Weekender", "brand": "FIELD", "category": "Travel", "price": 3850, "rating": "4.7", "color": "sky", "icon": "◈" },
+  { "id": "linen-throw", "name": "Linen Woven Throw", "brand": "HAVEN", "category": "Living", "price": 2199, "rating": "4.7", "color": "sand", "icon": "▤" },
+  { "id": "pour-over", "name": "Ceramic Pour-Over Set", "brand": "KIN", "category": "Living", "price": 1899, "rating": "4.8", "color": "peach", "icon": "◕" },
+  { "id": "analog-watch", "name": "Minimal Analog Watch", "brand": "FORM", "category": "Wear", "price": 5999, "rating": "4.6", "color": "lavender", "icon": "◷" },
+  { "id": "sneakers", "name": "Everyday Canvas Sneakers", "brand": "FIELD", "category": "Wear", "price": 3499, "rating": "4.5", "color": "mint", "icon": "◇" },
+  { "id": "overshirt", "name": "Cotton Utility Overshirt", "brand": "NOMAD", "category": "Wear", "price": 2799, "rating": "4.7", "color": "sand", "icon": "▦" },
+  { "id": "speaker", "name": "Pocket Bluetooth Speaker", "brand": "SONIK", "category": "Tech", "price": 3299, "rating": "4.6", "color": "sky", "icon": "◎" },
+  { "id": "charger", "name": "Compact Desk Charger", "brand": "LUMEN", "category": "Tech", "price": 2499, "rating": "4.8", "color": "peach", "icon": "⚡" },
+  { "id": "packing-cubes", "name": "Travel Packing Cubes", "brand": "NOMAD", "category": "Travel", "price": 1499, "rating": "4.5", "color": "mint", "icon": "▣" }
+]
