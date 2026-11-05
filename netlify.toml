@@ -1,0 +1,20 @@
+# Netlify configuration file for e-commerce-web frontend (Vite + React)
+
+[build]
+  base = "e-commerce-web"
+  command = "npm run build"
+  publish = "dist"
+
+# Single Page Application (SPA) redirect rule
+# Ensures client-side routing works correctly on refresh or direct navigation
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Optional: Proxy API requests to your backend service (uncomment and replace with your backend URL if needed)
+# [[redirects]]
+#   from = "/api/*"
+#   to = "https://your-backend-service.onrender.com/api/:splat"
+#   status = 200
+#   force = true
