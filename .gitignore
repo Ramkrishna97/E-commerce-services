@@ -37,3 +37,11 @@ out/
 
 ### VS Code ###
 .vscode/
+
+# Node & Frontend dependencies
+node_modules/
+**/node_modules/
+dist/
+**/dist/
+*.tsbuildinfo
+
