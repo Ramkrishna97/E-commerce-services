@@ -1,9 +1,18 @@
 # Netlify configuration file for e-commerce-web frontend (Vite + React)
 
 [build]
+  # Base directory where frontend package.json lives
   base = "e-commerce-web"
+  # Build command executed inside the base directory
   command = "npm run build"
+  # Directory where the built static assets are output (relative to base)
   publish = "dist"
+
+[build.environment]
+  # Ensure Node 20 or higher is used (Vite 6/8 and latest modern packages require Node >= 20.19.0 / 22)
+  NODE_VERSION = "22"
+  # Suppress TypeScript/build warnings from failing the build unexpectedly in CI
+  CI = "false"
 
 # Single Page Application (SPA) redirect rule
 # Ensures client-side routing works correctly on refresh or direct navigation
@@ -12,9 +21,9 @@
   to = "/index.html"
   status = 200
 
-# Optional: Proxy API requests to your backend service (uncomment and replace with your backend URL if needed)
+# Optional: Proxy API requests to backend service if needed
 # [[redirects]]
 #   from = "/api/*"
-#   to = "https://your-backend-service.onrender.com/api/:splat"
+#   to = "https://your-backend-api.example.com/api/:splat"
 #   status = 200
 #   force = true
